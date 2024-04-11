@@ -9,11 +9,6 @@ if __name__ == '__main__':
     if not os.path.exists('data'):
         os.mkdir('data')
 
-    # goldenapple.save_to_csv()
-
-    # id_p = goldenapple.get_all_id(5)
-    # goldenapple.get_products_info_and_save_json(id_p)
-
     # Получение времени начала работы
     cur_time = datetime.datetime.now()
 
