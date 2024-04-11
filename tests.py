@@ -45,6 +45,7 @@ class TestGoldenAppleAPI(unittest.TestCase):
 
     def test_get_products_info_and_save_json(self):
         """Тест получения информации и сохранения json-файла"""
+
         if not os.path.exists('data'):
             os.mkdir('data')
 
