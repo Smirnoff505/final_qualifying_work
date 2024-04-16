@@ -27,7 +27,6 @@ class GoldenAppleAPI:
 
         self.params.update({
             'categoryId': '1000000007',
-            # 'cityId': '4ffcde97-05e9-4a6e-bd51-3a984b41b7bd',
             'pageNumber': 1
         })
 
@@ -42,14 +41,13 @@ class GoldenAppleAPI:
 
         all_ld = []
 
-        params = {
+        self.params.update({
             'categoryId': '1000000007',
-            'cityId': '4ffcde97-05e9-4a6e-bd51-3a984b41b7bd',
             'pageNumber': page_number
-        }
+        })
 
         url = f'{self.base_url}catalog/plp'
-        response = requests.get(url=url, params=params, headers=self.headers)
+        response = requests.get(url=url, params=self.params, headers=self.headers)
         data = response.json()['data']['products']['products']
 
         response.raise_for_status()
@@ -67,14 +65,13 @@ class GoldenAppleAPI:
 
         for card in tqdm(cards_id):
 
-            params = {
-                'itemId': int(card),
-                'cityId': '4ffcde97-05e9-4a6e-bd51-3a984b41b7bd',
+            self.params.update({
+                'itemId': card,
                 'customerGroupId': 0
-            }
+            })
 
             url = f'{self.base_url}catalog/product-card'
-            response = requests.get(url=url, params=params, headers=self.headers)
+            response = requests.get(url=url, params=self.params, headers=self.headers)
             product_info = response.json()
 
             product_url = product_info['data']['variants'][0]['url']
